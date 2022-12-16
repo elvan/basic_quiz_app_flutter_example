@@ -4,11 +4,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      title: 'Basic Quiz',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Basic Quiz'),
+        ),
+        body: Center(
+          child: Text('Hello World'),
+        ),
       ),
-      home: Text('Hello, Flutter!'),
     );
   }
 }
