@@ -9,7 +9,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int questionIndex = 0;
+  int _questionIndex = 0;
 
   final List<Map<String, Object>> _questions = const [
     {
@@ -30,14 +30,14 @@ class _MyAppState extends State<MyApp> {
     print('Answer chosen!');
 
     setState(() {
-      if (questionIndex < _questions.length - 1) {
-        questionIndex = questionIndex + 1;
-      } else {
-        questionIndex = 0;
-      }
-
-      print("questionIndex: $questionIndex");
+      _questionIndex = _questionIndex + 1;
     });
+    print(_questionIndex);
+    if (_questionIndex < _questions.length) {
+      print('We have more questions!');
+    } else {
+      print('No more questions!');
+    }
   }
 
   @override
@@ -48,18 +48,22 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('Basic Quiz'),
         ),
-        body: Column(
-          children: <Widget>[
-            Question(_questions[questionIndex]['questionText']),
-            ...(_questions[questionIndex]['answers'] as List<String>)
-                .map((question) {
-              return Answer(
-                answerText: question,
-                selectHandler: _answerQuestion,
-              );
-            }).toList(),
-          ],
-        ),
+        body: _questionIndex < _questions.length
+            ? Column(
+                children: <Widget>[
+                  Question(_questions[_questionIndex]['questionText']),
+                  ...(_questions[_questionIndex]['answers'] as List<String>)
+                      .map((question) {
+                    return Answer(
+                      answerText: question,
+                      selectHandler: _answerQuestion,
+                    );
+                  }).toList(),
+                ],
+              )
+            : Center(
+                child: Text('You did it!'),
+              ),
       ),
     );
   }
