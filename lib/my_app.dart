@@ -9,9 +9,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+  int questionIndex = 0;
 
-  final _questions = const [
+  final List<Map<String, Object>> _questions = const [
     {
       'questionText': 'What\'s your favorite color?',
       'answers': ['Black', 'Red', 'Green', 'White'],
@@ -28,7 +28,6 @@ class _MyAppState extends State<MyApp> {
 
   void _answerQuestion() {
     print('Answer chosen!');
-    print("questionIndex: $questionIndex");
 
     setState(() {
       if (questionIndex < _questions.length - 1) {
