@@ -12,9 +12,18 @@ class _MyAppState extends State<MyApp> {
   var questionIndex = 0;
 
   var _questions = [
-    "What's your favorite color?",
-    "What's your favorite animal?",
-    "What's your favorite sport",
+    {
+      'questionText': 'What\'s your favorite color?',
+      'answers': ['Black', 'Red', 'Green', 'White'],
+    },
+    {
+      'questionText': 'What\'s your favorite animal?',
+      'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion'],
+    },
+    {
+      'questionText': 'Who\'s your favorite instructor?',
+      'answers': ['Max', 'Max', 'Max', 'Max'],
+    },
   ];
 
   void _answerQuestion() {
@@ -42,11 +51,14 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: <Widget>[
-            Question(_questions[questionIndex]),
-            Answer('Answer 1', _answerQuestion),
-            Answer('Answer 2', _answerQuestion),
-            Answer('Answer 3', _answerQuestion),
-            Answer('Answer 4', _answerQuestion),
+            Question(_questions[questionIndex]['questionText']),
+            ...(_questions[questionIndex]['answers'] as List<String>)
+                .map((question) {
+              return Answer(
+                answerText: question,
+                selectHandler: _answerQuestion,
+              );
+            }).toList(),
           ],
         ),
       ),
