@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'answer.dart';
-import 'question.dart';
+import 'quiz.dart';
+import 'result.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -49,21 +49,12 @@ class _MyAppState extends State<MyApp> {
           title: Text('Basic Quiz'),
         ),
         body: _questionIndex < _questions.length
-            ? Column(
-                children: <Widget>[
-                  Question(_questions[_questionIndex]['questionText']),
-                  ...(_questions[_questionIndex]['answers'] as List<String>)
-                      .map((question) {
-                    return Answer(
-                      answerText: question,
-                      selectHandler: _answerQuestion,
-                    );
-                  }).toList(),
-                ],
+            ? Quiz(
+                questions: _questions,
+                questionIndex: _questionIndex,
+                answerQuestion: _answerQuestion,
               )
-            : Center(
-                child: Text('You did it!'),
-              ),
+            : Result(),
       ),
     );
   }
