@@ -8,25 +8,25 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var questionIndex = 0;
 
-  var questions = [
+  var _questions = [
     "What's your favorite color?",
     "What's your favorite animal?",
     "What's your favorite sport",
   ];
 
-  var answers = [
+  var _answers = [
     'Black',
     'Green',
     'Blue',
     'Red',
   ];
 
-  void answerQuestion() {
+  void _answerQuestion() {
     print('Answer chosen!');
     print("questionIndex: $questionIndex");
 
     setState(() {
-      if (questionIndex < questions.length - 1) {
+      if (questionIndex < _questions.length - 1) {
         questionIndex = questionIndex + 1;
       } else {
         questionIndex = 0;
@@ -46,22 +46,22 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: <Widget>[
-            Text(questions[questionIndex]),
+            Text(_questions[questionIndex]),
             RaisedButton(
-              child: Text(answers[0]),
-              onPressed: answerQuestion,
+              child: Text(_answers[0]),
+              onPressed: _answerQuestion,
             ),
             RaisedButton(
-              child: Text(answers[1]),
-              onPressed: answerQuestion,
+              child: Text(_answers[1]),
+              onPressed: _answerQuestion,
             ),
             RaisedButton(
-              child: Text(answers[2]),
-              onPressed: answerQuestion,
+              child: Text(_answers[2]),
+              onPressed: _answerQuestion,
             ),
             RaisedButton(
-              child: Text(answers[3]),
-              onPressed: answerQuestion,
+              child: Text(_answers[3]),
+              onPressed: _answerQuestion,
             ),
           ],
         ),
