@@ -1,25 +1,43 @@
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var questionIndex = 0;
+
+  var questions = [
+    "What's your favorite color?",
+    "What's your favorite animal?",
+    "What's your favorite sport",
+  ];
+
+  var answers = [
+    'Black',
+    'Green',
+    'Blue',
+    'Red',
+  ];
+
   void answerQuestion() {
     print('Answer chosen!');
+    print("questionIndex: $questionIndex");
+
+    setState(() {
+      if (questionIndex < questions.length - 1) {
+        questionIndex = questionIndex + 1;
+      } else {
+        questionIndex = 0;
+      }
+
+      print("questionIndex: $questionIndex");
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      "What's your favorite color?",
-      "What's your favorite animal?",
-      "What's your favorite sport",
-    ];
-
-    var answers = [
-      'Black',
-      'Green',
-      'Blue',
-      'Red',
-    ];
-
     return MaterialApp(
       title: 'Basic Quiz',
       home: Scaffold(
@@ -28,7 +46,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
-            Text(questions[0]),
+            Text(questions[questionIndex]),
             RaisedButton(
               child: Text(answers[0]),
               onPressed: answerQuestion,
